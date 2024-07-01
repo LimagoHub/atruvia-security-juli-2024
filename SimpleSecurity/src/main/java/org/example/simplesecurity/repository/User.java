@@ -58,7 +58,7 @@ public class User implements UserDetails{
 
         private LocalDateTime lastUpdate;
 
-        @OneToMany( mappedBy = "user", cascade = CascadeType.ALL)
+        @OneToMany( mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
         private List<Role> roles = new ArrayList<>();
 
         @Override

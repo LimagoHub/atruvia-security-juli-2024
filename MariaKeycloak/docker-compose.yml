@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  mysql:
+      container_name: maria_db
+      image: mariadb:latest
+      ports:
+        - 3307:3306
+      volumes:
+        - ~/data:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: keycloak
+        MYSQL_USER: keycloak
+        MYSQL_PASSWORD: password
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      command: ["-Djboss.socket.binding.port-offset=100"]
+      environment:
+        DB_VENDOR: mariadb
+        DB_ADDR: mysql
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+      ports:
+        - 8180:8180
+        - 8543:8543
+      depends_on:
+        - mysql
+
+
