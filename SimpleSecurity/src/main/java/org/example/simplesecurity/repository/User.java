@@ -14,8 +14,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -56,9 +58,17 @@ public class User implements UserDetails{
 
         private LocalDateTime lastUpdate;
 
+        @OneToMany( mappedBy = "user", cascade = CascadeType.ALL)
+        private List<Role> roles = new ArrayList<>();
+
         @Override
         public Collection<? extends GrantedAuthority> getAuthorities() {
-            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + rolle));
+
+                //roles.forEach(System.out::println);
+
+                List<GrantedAuthority> authorities = new ArrayList<>();
+                roles.forEach(r->authorities.add(new SimpleGrantedAuthority("ROLE_" + r.getRole())));
+                return authorities;
         }
 
 

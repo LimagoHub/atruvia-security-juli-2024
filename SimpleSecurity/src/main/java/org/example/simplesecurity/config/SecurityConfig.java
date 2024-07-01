@@ -49,7 +49,7 @@ public class SecurityConfig {
 
 		@Bean
 		public UserDetailsService userDetailsService() {
-			return username -> userRepository.findById(username)
+			return username -> userRepository.findUserByIdWithRoles(username)
 					.orElseThrow(() -> new UsernameNotFoundException(username));
 		}
 
