@@ -1,6 +1,7 @@
-package org.example.simplesecurity.services;
+package org.example.simplesecurity.services.internal;
 
 
+import org.example.simplesecurity.services.HighSecureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -25,6 +26,8 @@ public class HighSecureServiceImpl implements HighSecureService {
 		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    System.out.print( "Current User Authorities inside this RunAS method only " + 
 	          auth.getAuthorities().toString());
+
+
 	}
 
 	@Override

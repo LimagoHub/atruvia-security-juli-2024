@@ -1,8 +1,10 @@
-package org.example.simplesecurity.services;
+package org.example.simplesecurity.services.internal;
 
 
 
 
+import org.example.simplesecurity.services.HighSecureService;
+import org.example.simplesecurity.services.LowSecureService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

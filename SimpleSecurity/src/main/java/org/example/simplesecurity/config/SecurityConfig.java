@@ -32,6 +32,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(requests -> requests
 						.requestMatchers("/", "/home").permitAll()
 						.requestMatchers("/unsecure/*").permitAll()
+						.requestMatchers("/secure/v2/*").permitAll()
 						.requestMatchers("/secure/*").hasAnyRole("USER", "GUEST")
 						.anyRequest().authenticated()
 				)
